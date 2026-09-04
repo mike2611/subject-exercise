@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import type { NextPracticeResponse } from "@subject-exercise/shared"
+import { defaultStudentId, students } from "./students"
 import "./App.css"
 
 const apiBaseUrl = import.meta.env.VITE_API_URL ?? "http://localhost:3000"
@@ -9,13 +10,6 @@ async function getRecommendation(studentId: string): Promise<NextPracticeRespons
   if (!response.ok) throw new Error(`recommendation request failed with HTTP ${response.status}`)
   return response.json() as Promise<NextPracticeResponse>
 }
-
-const students = [
-  { id: "stu_1041", name: "Ana" },
-  { id: "stu_2277", name: "Beto" },
-  { id: "stu_3390", name: "Citlali" },
-]
-const defaultStudentId = "stu_1041"
 
 function studentFromUrl() {
   const studentId = new URLSearchParams(window.location.search).get("student_id")
