@@ -1,0 +1,25 @@
+{
+  "skills": [{ "skill_id": "s1", "name": "Skill one" }],
+  "students": [{ "student_id": "stu1", "first_name": "Ana" }],
+  "attempts": [
+    {
+      "attempt_id": "b1",
+      "student_id": "stu1",
+      "skill_id": "s1",
+      "item_id": "i1",
+      "is_correct": true,
+      "hint_used": false,
+      "seconds_spent": null,
+      "submitted_at": "2026-08-01T10:00:00Z"
+    },
+    {
+      "attempt_id": "b2",
+      "student_id": "stu1",
+      "skill_id": "s1",
+      "item_id": "i2",
+      "is_correct": true,
+      "hint_used": false,
+      "submitted_at": "2026-08-01T11:00:00Z"
+    }
+  ]
+}
