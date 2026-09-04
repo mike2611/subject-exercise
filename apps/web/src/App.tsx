@@ -1,7 +1,14 @@
 import { useEffect, useState } from "react"
 import type { NextPracticeResponse } from "@subject-exercise/shared"
-import { getRecommendation } from "./fixture"
 import "./App.css"
+
+const apiBaseUrl = import.meta.env.VITE_API_URL ?? "http://localhost:3000"
+
+async function getRecommendation(studentId: string): Promise<NextPracticeResponse> {
+  const response = await fetch(`${apiBaseUrl}/api/next-practice?student_id=${encodeURIComponent(studentId)}`)
+  if (!response.ok) throw new Error(`recommendation request failed with HTTP ${response.status}`)
+  return response.json() as Promise<NextPracticeResponse>
+}
 
 const students = [
   { id: "stu_1041", name: "Ana" },
