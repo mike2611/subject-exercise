@@ -1,0 +1,9 @@
+{
+  "name": "@subject-exercise/shared",
+  "private": true,
+  "version": "0.0.0",
+  "types": "./src/index.ts",
+  "scripts": {
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  }
+}
