@@ -68,15 +68,17 @@ function compareSummaries(left: SkillSummary, right: SkillSummary): number {
 export function recommendNextSkill(dataset: Dataset, studentId: string): Recommendation | null {
   if (!dataset.students.some((student) => student.studentId === studentId)) return null
 
+  const attemptsBySkill = new Map<string, Attempt[]>()
+  for (const attempt of dataset.attempts) {
+    if (attempt.studentId !== studentId) continue
+
+    const attempts = attemptsBySkill.get(attempt.skillId) ?? []
+    attempts.push(attempt)
+    attemptsBySkill.set(attempt.skillId, attempts)
+  }
+
   const summaries = dataset.skills
-    .map((skill) =>
-      summarizeSkill(
-        skill,
-        dataset.attempts.filter(
-          (attempt) => attempt.studentId === studentId && attempt.skillId === skill.skillId,
-        ),
-      ),
-    )
+    .map((skill) => summarizeSkill(skill, attemptsBySkill.get(skill.skillId) ?? []))
     .sort(compareSummaries)
 
   const [winner, runnerUp] = summaries
