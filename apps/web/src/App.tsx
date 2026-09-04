@@ -3,7 +3,7 @@ import type { NextPracticeResponse } from "@subject-exercise/shared"
 import { defaultStudentId, students } from "./students"
 import "./App.css"
 
-const apiBaseUrl = import.meta.env.VITE_API_URL ?? "http://localhost:3000"
+const apiBaseUrl = import.meta.env.VITE_API_URL ?? ""
 
 async function getRecommendation(studentId: string): Promise<NextPracticeResponse> {
   const response = await fetch(`${apiBaseUrl}/api/next-practice?student_id=${encodeURIComponent(studentId)}`)
@@ -79,11 +79,6 @@ export default function App() {
             <p className="card-label">Your next focus</p>
             <h2 className="skill-name">{recommendation.skillName}</h2>
             <p className="explanation">{recommendation.explanation}</p>
-            <div className="evidence" aria-label="Practice evidence">
-              <div className="evidence-item"><span className="evidence-value">{recommendation.evidence.attempts}</span><span className="evidence-label">attempts</span></div>
-              <div className="evidence-item"><span className="evidence-value">{recommendation.evidence.correct}/{recommendation.evidence.attempts}</span><span className="evidence-label">correct</span></div>
-              <div className="evidence-item"><span className="evidence-value">{recommendation.evidence.hintUsed}</span><span className="evidence-label">hints used</span></div>
-            </div>
             <button className="start-button" type="button" onClick={() => setShowScopeNote(true)}>Start practicing</button>
             {showScopeNote && <p className="scope-note">practice content lives in the full product - this slice is the recommendation</p>}
           </section>

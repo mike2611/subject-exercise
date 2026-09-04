@@ -9,6 +9,7 @@ const dataset = loadDataset()
 const webOrigin = process.env.WEB_ORIGIN ?? "http://localhost:5173"
 
 app.use((_req, res, next) => {
+  console.info(`[http] ${_req.method} ${_req.originalUrl}`)
   res.setHeader("Access-Control-Allow-Origin", webOrigin)
   res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS")
   res.setHeader("Access-Control-Allow-Headers", "Content-Type")

@@ -1,6 +1,6 @@
 import type { ChatMessage } from "./prompt"
 
-export const GROQ_MODEL = "llama-3.1-8b-instant"
+export const GROQ_MODEL = "openai/gpt-oss-20b"
 
 const GROQ_CHAT_URL = "https://api.groq.com/openai/v1/chat/completions"
 const TIMEOUT_MS = 5000
@@ -21,8 +21,10 @@ export async function requestGroqCompletion(
       body: JSON.stringify({
         model: GROQ_MODEL,
         messages,
-        temperature: 0.7,
-        max_tokens: 120,
+        temperature: 1,
+        max_completion_tokens: 512,
+        top_p: 1,
+        reasoning_effort: "medium",
       }),
       signal: controller.signal,
     })

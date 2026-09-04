@@ -118,34 +118,6 @@ h1 {
   line-height: 1.55;
 }
 
-.evidence {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  margin: 0 0 22px;
-}
-
-.evidence-item {
-  padding: 12px 8px;
-  border-radius: 12px;
-  background: #f1f6f1;
-  text-align: center;
-}
-
-.evidence-value {
-  display: block;
-  color: #286247;
-  font-size: 1.35rem;
-  font-weight: 750;
-}
-
-.evidence-label {
-  display: block;
-  margin-top: 2px;
-  color: #718278;
-  font-size: 0.72rem;
-}
-
 .start-button,
 .retry-button {
   width: 100%;
