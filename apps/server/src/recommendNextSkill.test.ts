@@ -1,28 +1,8 @@
 import { describe, expect, it } from "vitest"
-import rawDataset from "../../../attempts.json"
-import type { Attempt, Dataset } from "@subject-exercise/shared"
+import { loadDataset } from "./loadAttempts"
 import { recommendNextSkill } from "./recommendNextSkill"
 
-const dataset: Dataset = {
-  skills: rawDataset.skills.map(({ skill_id, name }) => ({ skillId: skill_id, name })),
-  students: rawDataset.students.map(({ student_id, first_name }) => ({
-    studentId: student_id,
-    firstName: first_name,
-  })),
-  attempts: rawDataset.attempts.filter(
-    (attempt, index, all) => all.findIndex(({ attempt_id }) => attempt_id === attempt.attempt_id) === index,
-  ).map((attempt): Attempt => ({
-    attemptId: attempt.attempt_id,
-    studentId: attempt.student_id,
-    skillId: attempt.skill_id,
-    itemId: attempt.item_id,
-    isCorrect: attempt.is_correct,
-    hintUsed: attempt.hint_used,
-    ...(attempt.seconds_spent === null ? {} : { secondsSpent: attempt.seconds_spent }),
-    submittedAt: attempt.submitted_at,
-  })),
-  dropped: 1,
-}
+const dataset = loadDataset()
 
 describe("recommendNextSkill", () => {
   it("selects Beto's weakest skill and breaks the runner-up tie by recency", () => {

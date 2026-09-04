@@ -1,8 +1,17 @@
 # subject-exercise
 
-## Web screen
+## Run locally
 
-Run the web app with `npm run dev:web` and open the Vite URL.
+Start the API with `npm run dev:server`.
+
+In a second terminal, start the web app with `npm run dev:web` and open the Vite URL.
+
+The web app uses `http://localhost:3000` for the API by default.
+Set `VITE_API_URL` when the API runs at another origin.
+
+The API accepts `WEB_ORIGIN` to configure the allowed web origin, defaulting to `http://localhost:5173`.
+
+## Web screen
 
 The student picker is kept in the `student_id` query parameter so each recommendation has a shareable deep link.
 
