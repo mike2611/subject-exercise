@@ -22,9 +22,9 @@ export async function requestGroqCompletion(
         model: GROQ_MODEL,
         messages,
         temperature: 1,
-        max_completion_tokens: 512,
+        max_completion_tokens: 1024,
         top_p: 1,
-        reasoning_effort: "medium",
+        reasoning_effort: "low",
       }),
       signal: controller.signal,
     })
