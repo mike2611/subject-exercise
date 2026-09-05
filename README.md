@@ -38,11 +38,39 @@ During local development, Vite proxies `/api` requests to `http://localhost:3000
 
 This keeps browser API requests same-origin and avoids local development CORS issues.
 
+### Using Different Local Ports
+
+The ports are configured through the environment files.
+
+For example, to run the backend on port `4000` and the frontend on port `8080`, set:
+
+`apps/server/.env`:
+
+```env
+PORT=4000
+WEB_ORIGIN=http://localhost:8080
+```
+
+`apps/web/.env`:
+
+```env
+WEB_PORT=8080
+API_PROXY_TARGET=http://localhost:4000
+VITE_API_URL=
+```
+
+Restart both development servers after changing these values.
+
+Keep `VITE_API_URL` empty for local development so requests use the Vite proxy.
+If the frontend calls a separately hosted backend directly, set it to that backend origin, for example `VITE_API_URL=https://api.example.com`, and set `WEB_ORIGIN` to the frontend origin.
+
 ## Environment Variables
 
 Backend variables belong in `apps/server/.env`.
 
 `WEB_ORIGIN` configures the allowed origin for direct cross-origin API requests and defaults to `http://localhost:5173`.
+
+`PORT` configures the backend port and defaults to `3000`.
 
 `GROQ_API_KEY` enables the Groq-backed explanation when set.
 
@@ -51,6 +79,10 @@ The backend always has a fallback explanation if the key is missing or the LLM r
 Frontend variables belong in `apps/web/.env`.
 
 `VITE_API_URL` is optional.
+
+`WEB_PORT` configures the Vite development server port and defaults to `5173`.
+
+`API_PROXY_TARGET` configures the Vite `/api` proxy target and defaults to `http://localhost:3000`.
 
 Leave it empty to use the Vite proxy, or set it to a different API origin for deployments where the API is hosted separately.
 

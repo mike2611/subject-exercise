@@ -1,1 +1,1 @@
-export const serverPort = 3000
+export const serverPort = Number(process.env.PORT ?? 3000)
