@@ -1,7 +1,8 @@
 import { app } from "./app"
+import { serverPort } from "./config"
 
-const port = Number(process.env.PORT ?? 3000)
+console.info(`[llm] Groq API key configured: ${process.env.GROQ_API_KEY ? "yes" : "no"}`)
 
-app.listen(port, () => {
-  console.log(`server listening on http://localhost:${port}`)
+app.listen(serverPort, () => {
+  console.log(`server listening on http://localhost:${serverPort}`)
 })
